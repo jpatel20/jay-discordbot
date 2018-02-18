@@ -1,12 +1,12 @@
 #   Jay Patel
 
-import os
 from __future__ import print_function
 import discord
 from discord.ext import commands
 import asyncio
 import mlbgame #api for game data
 import datetime
+import os
 
 bot = commands.Bot(command_prefix='!', description='description here')
 client = discord.Client()
