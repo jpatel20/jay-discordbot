@@ -1,5 +1,6 @@
 #   Jay Patel
 
+import os
 from __future__ import print_function
 import discord
 from discord.ext import commands
