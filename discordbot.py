@@ -36,15 +36,15 @@ async def scores(ctx): # working
 async def scores_team(*,team): # working
     team = team.title()
     today = datetime.datetime.now()
-    #games = mlbgame.day(today.year, today.month, today.day, home=None, away=None)
-    games = mlbgame.day(2018, 4, 4, home=team, away=team)    #used for testing 
+    games = mlbgame.day(today.year, today.month, today.day, home=None, away=None)
+    #games = mlbgame.day(2018, 4, 4, home=team, away=team)    #used for testing 
     for game in games:
         await bot.say(game)
 
 @bot.command()
 async def standings():   # not working
-    today=datetime.datetime(2017, 10, 6, 0, 59, 6, 838799)
-    #today = datetime.datetime.now()
+    #today=datetime.datetime(2017, 10, 6, 0, 59, 6, 838799)
+    today = datetime.datetime.now()
     standings = standings(today)
     await bot.say(standings)
 
