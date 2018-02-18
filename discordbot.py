@@ -6,8 +6,6 @@ from discord.ext import commands
 import asyncio
 import mlbgame #api for game data
 import datetime
-import requests
-import requests_cache
 
 bot = commands.Bot(command_prefix='!', description='description here')
 client = discord.Client()
@@ -50,7 +48,7 @@ async def standings():   # not working
     await bot.say(standings)
 
 
-bot.run('NDExNjAwMTEwNjkxMDI0ODk2.DV-EMg.STzgqTWsceJ5g4n_B4VrbvxVU5w')
+bot.run(os.getenv('TOKEN'))
 
 # !scores
 # !scores team *team name*
