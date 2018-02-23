@@ -35,7 +35,7 @@ async def scores(ctx): # working
 async def scores_team(*,team): # working
     team = team.title()
     today = datetime.datetime.now()
-    games = mlbgame.day(today.year, today.month, today.day, home=None, away=None)
+    games = mlbgame.day(today.year, today.month, today.day, home=team, away=team)
     #games = mlbgame.day(2018, 2, 23, home=team, away=team)    #used for testing
     if not games:
         await bot.say("No games today")
