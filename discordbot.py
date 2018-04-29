@@ -7,6 +7,7 @@ import asyncio
 import mlbgame #api for game data
 import datetime
 import os
+import re
 
 bot = commands.Bot(command_prefix='!', description='description here')
 client = discord.Client()
@@ -19,42 +20,31 @@ async def say(*,something):
     await bot.say(embed=em)
 
 @bot.group(pass_context=True)
-async def scores(ctx): # working
+async def scores(ctx):
     """ !scores or !scores team_name, for daily scores
     """
     if ctx.invoked_subcommand is None:
         today = datetime.datetime.now()
         games = mlbgame.day(today.year, today.month, today.day, home=None, away=None)
-        #games = mlbgame.day(2018, 4, 4, home=None, away=None)    #used for testing specific date
         if not games:
             await bot.say("No games today")
         for game in games:
             await bot.say(game)
 
 @scores.command(name="team") 
-async def scores_team(*,team): # working
+async def scores_team(*,team): 
     team = team.title()
     today = datetime.datetime.now()
     games = mlbgame.day(today.year, today.month, today.day, home=team, away=team)
-    #games = mlbgame.day(2018, 2, 23, home=team, away=team)    #used for testing
     if not games:
         await bot.say("No games today")
     for game in games:
         await bot.say(game)
 
 @bot.command()
-async def standings():   # not working
-    """ !standings, not working atm 
-    """
-    today=datetime.datetime(2018, 2, 23, 0, 59, 6, 838799)
-    #today = datetime.datetime.now()
-    standings = standings(today)
-    await bot.say(standings)
-
-@bot.command()
 async def emojify(*,something):
     """ !emojify something, to echo something with emoji letters/numbers
-    """    
+    """
     output = ""
     for i, c in enumerate(something):
         if c == "0":
@@ -77,8 +67,14 @@ async def emojify(*,something):
             output += ":eight:"
         elif c == "9":
             output += ":nine:"
+        elif c == "?":
+            output += ":grey_question:"
+        elif c == "!":
+            output += ":grey_exclamation:"
+        elif c == " ":
+            output += " "
         else:
-            output += ":regional_indicator_" + c.lower() + ":"
+            output +=":black_small_square:"
     await bot.say(output)
 
 bot.run(os.getenv('TOKEN'))
