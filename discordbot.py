@@ -24,6 +24,9 @@ async def on_message(message):
     elif ":sc4rface:" in message.content:
         output += os.getenv('BRANDON_MENTION') + '>'
         await bot.send_message(message.channel, output)
+    elif ":sanket:" in message.content:
+        output += os.getenv('SANKET_MENTION') + '>'
+        await bot.send_message(message.channel, output)
 
 @bot.command()
 async def say(*,something):
