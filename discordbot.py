@@ -14,7 +14,7 @@ client = discord.Client()
 
 @bot.listen()
 async def on_message(message):
-    output = '<'
+    output = '<@'
     output += os.getenv('HARSH_MENTION')
     output += '>'
     if ":surspanka:" in message.content:
