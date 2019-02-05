@@ -14,12 +14,15 @@ client = discord.Client()
 
 @bot.listen()
 async def on_message(message):
-    output = '<@'
-    output += os.getenv('HARSH_MENTION')
-    output += '>'
+    output = '<@'    
     if ":surspanka:" in message.content:
-        print (message.author.id)
-        await bot.send_message(message.channel, output)
+        output += os.getenv('HARSH_MENTION')
+    if ":ivan:" in message.content:
+        output += os.getenv('IVAN_MENTION')
+    if ":sc4rface:" in message.content:
+        output += os.getenv('BRANDON_MENTION')
+    output += '>'
+    await bot.send_message(message.channel, output)
 
 @bot.command()
 async def say(*,something):
