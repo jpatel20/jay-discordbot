@@ -12,6 +12,15 @@ import re
 bot = commands.Bot(command_prefix='!', description='description here')
 client = discord.Client()
 
+@bot.listen()
+async def on_message(message):
+    output = '<'
+    output += os.getenv('HARSH_MENTION')
+    output += '>'
+    if ":surspanka:" in message.content:
+        print (message.author.id)
+        await bot.send_message(message.channel, output)
+
 @bot.command()
 async def say(*,something):
     """ !say something, to echo something 
